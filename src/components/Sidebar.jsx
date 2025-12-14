@@ -6,7 +6,7 @@ import moment from 'moment'
 
 const Sidebar = ({isMenuOpen, setIsMenuOpen}) => {
 
-   const {chats, setSelecttedChat, theme, setTheme, user, navigate} = useAppContext()
+   const {chats, setSelectedChat, theme, setTheme, user, navigate} = useAppContext()
    const [search, setSearch] = useState('')
       
 
@@ -40,7 +40,9 @@ const Sidebar = ({isMenuOpen, setIsMenuOpen}) => {
                 chats.filter((chat)=> chat.messages[0] ? chat.messages[0]?.content.
               toLowerCase().includes(search.toLowerCase()) : chat.name.toLowerCase().
               includes(search.toLowerCase())).map((chat)=>(
-                <div key={chat._id} className='p-2 px-4 dark:bg-[#57317C]/10 border
+                <div onClick={()=> {navigate('/'); setSelectedChat(chat);
+                      setIsMenuOpen(false)}} 
+                key={chat._id} className='p-2 px-4 dark:bg-[#57317C]/10 border
                 border-gray-300 dark:border-[#80609F]/15 rounded-md cursor-pointer
                   flex justify-between group'>
                     <div>
@@ -57,7 +59,7 @@ const Sidebar = ({isMenuOpen, setIsMenuOpen}) => {
         </div>
 
         {/** community images */}
-        <div  onClick={()=> {navigate('/')}} className='flex items-center gap-2 p-3 mt-4 border
+        <div  onClick={()=> {navigate('/community'); setIsMenuOpen(false)}} className='flex items-center gap-2 p-3 mt-4 border
           border-gray-300 dark:border-white/15 rounded-md cursor-pointer hover:scale-103
           transition-all'>
             <img src={assets.gallery_icon} className='w-4.5 not-dark:invert' alt="" />
@@ -68,7 +70,7 @@ const Sidebar = ({isMenuOpen, setIsMenuOpen}) => {
 
 
         {/** Credit Purchase Options*/}
-        <div  onClick={()=> {navigate('/credits')}} className='flex items-center gap-2 p-3 mt-4 border
+        <div  onClick={()=> {navigate('/credits'); setIsMenuOpen(false)}} className='flex items-center gap-2 p-3 mt-4 border
           border-gray-300 dark:border-white/15 rounded-md cursor-pointer hover:scale-103
           transition-all'>
             <img src={assets.diamond_icon} className='w-4.5 dark:invert' alt="" />
