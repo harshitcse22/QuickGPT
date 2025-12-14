@@ -34,8 +34,8 @@ const Sidebar = ({isMenuOpen, setIsMenuOpen}) => {
         </div>
 
         {/* Recent Chats  */}
-        {chats.length > 0 && <p className='mt-4 text-sm'> Recent Chats</p>}
-        <div>
+        {chats.length > 0 && <p className='mt-4 text-sm '> Recent Chats</p>}
+        <div className='flex-1 overflow-y-scroll   '>
             {
                 chats.filter((chat)=> chat.messages[0] ? chat.messages[0]?.content.
               toLowerCase().includes(search.toLowerCase()) : chat.name.toLowerCase().
